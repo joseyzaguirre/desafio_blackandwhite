@@ -15,6 +15,26 @@ app.get('/procesar', async (req,res) =>{
 
 let puerto = 8080;
 
-app.listen(puerto, () => {
-    console.log(`servidor corriendo en el puerto ${puerto}`);
-});
+yargs.command(
+    'start',
+    'comando para echar a correr el servidor',
+    {
+        key: {
+            describe: 'clave secreta para iniciar el servidor',
+            demand: true,
+            alias: 'k'
+        }
+    },
+    function (args) {
+
+        if (args.key != '123') {
+            console.log('clave incorrecta')
+            return 1;
+        };
+
+        app.listen(puerto, () => {
+            console.log(`servidor corriendo en el puerto ${puerto}`);
+        });
+
+    }
+).help().argv;
