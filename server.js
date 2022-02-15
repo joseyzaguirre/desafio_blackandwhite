@@ -9,7 +9,7 @@ app.use(express.static('static'));
 app.get('/procesar', async (req,res) =>{
     let archivo = req.query.foto;
     const imagen = await Jimp.read(archivo);
-    await imagen.resize(350, Jimp.AUTO).rgba(false).grayscale().writeAsync('img/newImg.jpg')
+    await imagen.resize(350, Jimp.AUTO).rgba(false).quality(60).grayscale().writeAsync('img/newImg.jpg')
     res.send('imagen procesada exitosamente');
 });
 
