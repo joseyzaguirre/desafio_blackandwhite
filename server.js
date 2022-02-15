@@ -9,10 +9,12 @@ app.use(express.static('static'));
 app.get('/procesar', async (req,res) =>{
     let archivo = req.query.foto;
     const imagen = await Jimp.read(archivo);
-    await imagen.resize(350, Jimp.AUTO).rgba(false).grayscale().writeAsync('img/newimg.jpg')
+    await imagen.resize(350, Jimp.AUTO).rgba(false).grayscale().writeAsync('img/newImg.jpg')
     res.send('imagen procesada exitosamente');
 });
 
-app.listen(8080, () => {
-    console.log('servidor corriendo en el puerto 8080');
+let puerto = 8080;
+
+app.listen(puerto, () => {
+    console.log(`servidor corriendo en el puerto ${puerto}`);
 });
