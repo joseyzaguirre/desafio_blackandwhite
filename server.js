@@ -1,9 +1,10 @@
 const express = require('express');
 const yargs = require('yargs');
 const Jimp = require('jimp');
+const fs = require('fs');
 
 const app = express();
-const fs = require('fs');
+
 app.use(express.static('static'));
 
 app.get('/procesar', async(req, res) => {
@@ -15,7 +16,6 @@ app.get('/procesar', async(req, res) => {
         res.writeHead(200, { 'Content-Type': 'image/jpeg' })
         res.end(imagen)
     })
-
 });
 
 let puerto = 8080;
